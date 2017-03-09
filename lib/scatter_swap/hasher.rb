@@ -27,8 +27,8 @@ module ScatterSwap
     # We want a unique map for each place in the original number
     def swapper_map(index)
       # Lazy load the swapper_map for this index
-      if (!_swapper_maps || !_swapper_maps[index])
-        _swapper_maps ||= []
+      if (!@_swapper_maps || !@_swapper_maps[index])
+        @_swapper_maps ||= []
         index_swapper_map = []
 
         array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -36,10 +36,10 @@ module ScatterSwap
           index_swapper_map << array.rotate!(index + i ^ spin).pop
         end
 
-        _swapper_maps[index] = index_swapper_map
+        @_swapper_maps[index] = index_swapper_map
       end
 
-      return _swapper_maps[index]
+      return @_swapper_maps[index]
     end
 
     # Using a unique map for each of the ten places,
@@ -96,8 +96,8 @@ module ScatterSwap
     end
 
     def build_working_array(original_integer)
-      zero_pad = original_integer.to_s.rjust(10, '0')
-      return zero_pad.split("").collect {|d| d.to_i}
+      zero_pad = original_integer.to_s.rjust(10, '0'.freeze)
+      return zero_pad.chars.collect {|d| d.to_i}
     end
 
     private

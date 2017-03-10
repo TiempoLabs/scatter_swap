@@ -110,7 +110,7 @@ module ScatterSwap
       rem = original_integer.to_i
       denominator = 1_000_000_000
       index = 0
-      while (rem > 0)
+      while (index < 10)
         zero_pad[index] = rem / denominator
         rem = rem % denominator
         denominator = denominator / 10
@@ -133,6 +133,6 @@ module ScatterSwap
         7 => '7'.freeze,
         8 => '8'.freeze,
         9 => '9'.freeze,
-    }
+    }.freeze
   end
 end

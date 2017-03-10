@@ -108,6 +108,9 @@ module ScatterSwap
     def build_working_array(original_integer)
       zero_pad = [0,0,0,0,0,0,0,0,0,0]
       rem = original_integer.to_i
+      if (rem < 0)
+        rem = rem.abs
+      end
       denominator = 1_000_000_000
       index = 0
       while (index < 10)

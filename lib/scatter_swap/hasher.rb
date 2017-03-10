@@ -95,9 +95,20 @@ module ScatterSwap
       @spin || 0
     end
 
+    # Right justifies the integer/string that's passed in creating an array of integers (representing digits in the final ID)
+    # Optimized for using arithmetic to left justify instead of string casting + rjusting
     def build_working_array(original_integer)
-      zero_pad = original_integer.to_s.rjust(10, '0'.freeze)
-      return zero_pad.chars.collect {|d| d.to_i}
+      zero_pad = [0,0,0,0,0,0,0,0,0,0]
+      rem = original_integer.to_i
+      denominator = 1_000_000_000
+      index = 0
+      while (rem > 0)
+        zero_pad[index] = rem / denominator
+        rem = rem % denominator
+        denominator = denominator / 10
+        index += 1
+      end
+      return zero_pad
     end
 
     private

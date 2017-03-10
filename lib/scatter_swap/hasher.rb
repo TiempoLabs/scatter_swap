@@ -20,8 +20,10 @@ module ScatterSwap
       return completed_string(working_array)
     end
 
+    # Builds the completed_string from the "working_array" of integers. Optimized heavily to improve memory allocation with
+    # INT_CHAR_LOOKUP method
     def completed_string(working_array)
-      str = '0000000000' # Start with an empty string of 10 spaces
+      str = '0000000000'
       working_array.each_with_index do |i, idx|
         if (i != 0)
           str[idx] = INT_CHAR_LOOKUP[i]

@@ -22,7 +22,7 @@ describe "#hash" do
   end
 
   it "should be able to hash negative values" do
-    (-100..1).each do |integer|
+    (-100..-1).each do |integer|
       hashed = ScatterSwap.hash(integer)
       hashed.should == ScatterSwap.hash(integer.abs)
     end

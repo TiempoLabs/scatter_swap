@@ -21,7 +21,13 @@ module ScatterSwap
     end
 
     def completed_string(working_array)
-      working_array.join
+      str = '0000000000' # Start with an empty string of 10 spaces
+      working_array.each_with_index do |i, idx|
+        if (i != 0)
+          str[idx] = INT_CHAR_LOOKUP[i]
+        end
+      end
+      str
     end
 
     # We want a unique map for each place in the original number
@@ -113,5 +119,18 @@ module ScatterSwap
 
     private
       attr_accessor :_swapper_maps
+
+    INT_CHAR_LOOKUP = {
+        0 => '0'.freeze,
+        1 => '1'.freeze,
+        2 => '2'.freeze,
+        3 => '3'.freeze,
+        4 => '4'.freeze,
+        5 => '5'.freeze,
+        6 => '6'.freeze,
+        7 => '7'.freeze,
+        8 => '8'.freeze,
+        9 => '9'.freeze,
+    }
   end
 end
